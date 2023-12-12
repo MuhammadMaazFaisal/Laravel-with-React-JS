@@ -1,20 +1,8 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
+import axios from "axios";
 
 export default function Navbar(props) {
-  const [search, setSearch] = useState("Good");
-  
-  const handleSearch = (e) => {
-    if (search === "Good Morning") {
-      setSearch("Good Afternoon");
-    } else if (search === "Good Afternoon") {
-      setSearch("Good Evening");
-    }else{
-      setSearch("Good Morning");
-    }
-
-  }
-
   return (
     <>
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
@@ -85,13 +73,13 @@ export default function Navbar(props) {
             <form className="d-flex" role="search">
               <input
                 className="form-control me-2"
-                type="search"
+                type="text"
                 placeholder="Search"
                 aria-label="Search"
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
+                value={props.search}
+                onChange={(e) => props.setSearch(e.target.value)}
               />
-              <button className="btn btn-outline-success" type="button" onClick={handleSearch}>
+              <button className="btn btn-outline-success" type="button" onClick={props.onSearch}>
                 Search
               </button>
             </form>

@@ -54,6 +54,10 @@ a{
   text-decoration: none;
 }
 
+.nav-link{
+  color: white !important;
+}
+
 .max-view-height{
   height: 100vh;
 }

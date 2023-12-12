@@ -3,6 +3,9 @@ import React from "react";
 export default function Sidebar(props) {
   const handleTabChange = (e,tab) => {
     e.preventDefault();
+    const activeTab = document.querySelector(".active");
+    activeTab.classList.remove("active");
+    e.target.classList.add("active");
     props.setCurrentTab(tab);
   };
   return (
