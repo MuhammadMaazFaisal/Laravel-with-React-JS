@@ -1,85 +1,79 @@
 import React from "react";
+import {useNavigate, Link} from "react-router-dom";
 
 export default function Sidebar(props) {
-  const handleTabChange = (e,tab) => {
-    e.preventDefault();
-    const activeTab = document.querySelector(".active");
-    activeTab.classList.remove("active");
-    e.target.classList.add("active");
-    props.setCurrentTab(tab);
+  const handlePageChange = (e) => {
+    document.querySelector('.nav-link.active').classList.remove('active');
+    e.target.classList.add('active');
   };
   return (
     <>
       <div className="max-view-height d-flex flex-column flex-shrink-0 p-3 text-white bg-dark">
-        <a
-          href="/"
+        <Link
+          to="/"
           className="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none"
         >
           <svg className="bi me-2" width="40" height="32">
             <use xlinkHref="#bootstrap"></use>
           </svg>
           <span className="fs-4">Sidebar</span>
-        </a>
+        </Link>
         <hr />
         <ul className="nav nav-pills flex-column mb-auto">
           <li className="nav-item">
-            <a
-              href="/"
+            <Link
+              to="/"
               className="nav-link active"
               aria-current="page"
-              onClick={(e) => {
-                handleTabChange(e,"Home");
-              }}
+              onClick={handlePageChange}
             >
               <svg className="bi me-2" width="16" height="16">
                 <use xlinkHref="#home"></use>
               </svg>
               Home
-            </a>
+            </Link>
           </li>
           <li>
-            <a
-              href="/"
+            <Link
+              to="/about"
               className="nav-link text-white"
-              onClick={(e) => {
-                handleTabChange(e,"About");
-              }}
+              onClick={handlePageChange}
             >
               <svg className="bi me-2" width="16" height="16">
                 <use xlinkHref="#speedometer2"></use>
               </svg>
               About
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="/" className="nav-link text-white">
+            <Link to="/" className="nav-link text-white">
               <svg className="bi me-2" width="16" height="16">
                 <use xlinkHref="#table"></use>
               </svg>
               Orders
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="/" className="nav-link text-white">
+            <Link to="/" className="nav-link text-white">
               <svg className="bi me-2" width="16" height="16">
                 <use xlinkHref="#grid"></use>
               </svg>
               Products
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="/" className="nav-link text-white">
+            <Link to="/" className="nav-link text-white">
               <svg className="bi me-2" width="16" height="16">
                 <use xlinkHref="#people-circle"></use>
               </svg>
               Customers
-            </a>
+            </Link>
           </li>
         </ul>
         <hr />
         <div className="dropdown">
-          <a
-            href="/"
+          <Link
+            to="/"
             className="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
             id="dropdownUser1"
             data-bs-toggle="dropdown"
@@ -93,33 +87,33 @@ export default function Sidebar(props) {
               className="rounded-circle me-2"
             />
             <strong>mdo</strong>
-          </a>
+          </Link>
           <ul
             className="dropdown-menu dropdown-menu-dark text-small shadow"
             aria-labelledby="dropdownUser1"
           >
             <li>
-              <a className="dropdown-item" href="/">
+              <Link className="dropdown-item" to="/">
                 New project...
-              </a>
+              </Link>
             </li>
             <li>
-              <a className="dropdown-item" href="/">
+              <Link className="dropdown-item" to="/">
                 Settings
-              </a>
+              </Link>
             </li>
             <li>
-              <a className="dropdown-item" href="/">
+              <Link className="dropdown-item" to="/">
                 Profile
-              </a>
+              </Link>
             </li>
             <li>
               <hr className="dropdown-divider" />
             </li>
             <li>
-              <a className="dropdown-item" href="/">
+              <Link className="dropdown-item" to="/">
                 Sign out
-              </a>
+              </Link>
             </li>
           </ul>
         </div>

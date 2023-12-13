@@ -28,4 +28,23 @@ class WebsiteController extends Controller
             'message' => 'Product deleted successfully!',
         ], 200);
     }
+
+    public function show(Request $request, $id)
+    {
+        $product = Products::find($id);
+        return $product;
+    }
+
+    public function update(Request $request, $id)
+    {
+        dd($request->all());
+        $product = Products::find($id);
+        $product->product_name = $request->name;
+        $product->price = $request->price;
+        $product->description = $request->description;
+        $product->save();
+        return response()->json([
+            'message' => 'Product updated successfully!',
+        ], 200);
+    }
 }
