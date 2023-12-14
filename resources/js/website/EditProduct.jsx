@@ -3,31 +3,35 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 
 export default function EditProduct() {
-    const { id } = useParams();
-    const [product, setProduct] = useState({});
+    const {id}  = useParams();
     const [formData, setFormData] = useState({
         name: "",
         price: "",
         description: "",
     });
+
     const handleSubmit = (e) => {
         e.preventDefault();
         axios
             .put(`/api/products/${id}`, formData)
             .then((response) => {
                 console.log(response.data);
-                setProduct(response.data);
+                setFormData({
+                    name: response.data.product_name,
+                    price: response.data.price,
+                    description: response.data.description,
+                });
             })
             .catch((error) => {
                 console.error("Error updating data: ", error);
             });
     };
+
     useEffect(() => {
         axios
             .get(`/api/products/${id}`)
             .then((response) => {
                 console.log(response.data);
-                setProduct(response.data);
                 setFormData({
                     name: response.data.product_name,
                     price: response.data.price,
@@ -37,32 +41,32 @@ export default function EditProduct() {
             .catch((error) => {
                 console.error("Error fetching data: ", error);
             });
-    }, []);
+    }, [id]);
     return (
         <>
             <form className="container-fluid" onSubmit={handleSubmit}>
                 <div className="row">
                     <div className="form-group col-md-6">
-                        <label for="inputEmail4">Name</label>
+                        <label htmlFor="inputEmail4">Name</label>
                         <input
                             type="text"
                             className="form-control"
                             id="inputEmail4"
                             placeholder="Name"
                             name="name"
-                            value={product.product_name}
+                            value={formData.name}
                             onChange={(e) => {
-                                setProduct({
-                                    product_name: e.target.value,
-                                });
-                                setFormData({
-                                    name: e.target.value,
-                                });
+                                setFormData(
+                                    (prev) => ({
+                                        ...prev,
+                                        name: e.target.value,
+                                    })
+                                );
                             }}
                         />
                     </div>
                     <div className="form-group col-md-6">
-                        <label for="inputPassword4">Price</label>
+                        <label htmlFor="inputPassword4">Price</label>
                         <input
                             type="number"
                             step={0.01}
@@ -70,34 +74,35 @@ export default function EditProduct() {
                             id="inputPassword4"
                             placeholder="Price"
                             name="price"
-                            value={product.price}
+                            value={formData.price}
                             onChange={(e) => {
-                                setProduct({
-                                    price: e.target.value,
-                                });
-                                setFormData({
-                                    price: e.target.value,
-                                });
+                                setFormData(
+                                    (prev) => ({
+                                        ...prev,
+                                        price: e.target.value,
+                                    })
+                                );
                             }}
+                           
                         />
                     </div>
                 </div>
                 <div className="form-group">
-                    <label for="inputAddress">Description</label>
+                    <label htmlFor="inputAddress">Description</label>
                     <input
                         type="text"
                         className="form-control"
                         id="inputAddress"
                         placeholder="1234 Main St"
                         name="description"
-                        value={product.description}
+                        value={formData.description}
                         onChange={(e) => {
-                            setProduct({
-                                description: e.target.value,
-                            });
-                            setFormData({
-                                description: e.target.value,
-                            });
+                            setFormData(
+                                (prev) => ({
+                                    ...prev,
+                                    description: e.target.value,
+                                })
+                            );
                         }}
                     />
                 </div>

@@ -7,11 +7,7 @@ import EditProduct from "./website/EditProduct";
 import About from "./website/About";
 import { useState } from "react";
 import axios from "axios";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 // rfc for react functional component
 
@@ -27,7 +23,7 @@ function App() {
                     },
                 })
                 .then((response) => {
-                    console.log(response.data); 
+                    console.log(response.data);
                     setSearchResults(response.data);
                 });
         } catch (error) {
@@ -50,9 +46,17 @@ function App() {
                         setSearch={setSearch}
                     />
                     <Routes>
-                        <Route exact path="/" element={<Home searchResults={searchResults} />} />
+                        <Route
+                            exact
+                            path="/"
+                            element={<Home searchResults={searchResults} />}
+                        />
                         <Route exact path="/about" element={<About />} />
-                        <Route exact path="/products/edit/:id" element={<EditProduct />} />
+                        <Route
+                            exact
+                            path="/products/edit/:id"
+                            element={<EditProduct />}
+                        />
                     </Routes>
                 </div>
             </div>

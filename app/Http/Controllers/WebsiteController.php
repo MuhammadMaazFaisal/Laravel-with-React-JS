@@ -37,7 +37,6 @@ class WebsiteController extends Controller
 
     public function update(Request $request, $id)
     {
-        dd($request->all());
         $product = Products::find($id);
         $product->product_name = $request->name;
         $product->price = $request->price;
